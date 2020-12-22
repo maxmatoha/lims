@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lims</title>
+    <link rel="stylesheet" href="./css/reset.min.css" />
+    <link rel="stylesheet" href="./css/style.min.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Aside -->
+      <aside class="sidebar" id="mySidebar">
+        <div class="logo">LIMS</div>
+        <div class="search__inner">
+          <form class="search__form">
+            <input
+              class="search__form-input"
+              type="text"
+              placeholder="Search"
+            />
+            <button class="search__form-btn" type="submit"></button>
+          </form>
+        </div>
+        <div class="sidebar__body"></div>
+        <div class="sidebar__run">
+          <div class="sidebar__run-timer-inner">
+            
+            <div id="myBar" class="sidebar__run-timer">
+              <span class="run-timer-span-left">Run 00:23/01:00</span>
+              <span class="run-timer-span-right">-00:47</span>
+            </div>
+          </div>
+          <!-- RUN Status -->
+          <div class="sidebar__run-status">
+            <div class="sidebar__run-status-title">RUN</div>
+            <div class="sidebar__btn-on-off">
+              <button  onclick="move()" class="sidebar__btn btn-on">on</button>
+              <button class="sidebar__btn btn-off">off</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- Main -->
+      <div class="main" id="main-content">
+        <header class="header">
+          <div class="header__burger" onclick="openAside()">
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+          </div>
+          <nav class="menu">
+            <ul class="menu__list">
+              <li class="menu__list-item dropdown">
+                <a class="menu__list-link dropdown-arrow" href="#!"
+                  >Instruments</a
+                >
+                <div class="dropdown-content">
+                  <a class="dropdown__link" href="#!">View all</a>
+                  <a class="dropdown__link" href="#!">Add new</a>
+                </div>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#!">Widgets</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#!">View</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#!">Administration</a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="header__right-block">
+            <div class="header__profile">Alexander</div>
+            <div class="header__language">ENG</div>
+            <div class="header__unlock"></div>
+          </div>
+        </header>
+        <div class="container">
+          <section class="widgets" id="my-widgets">
+            <button class="widgets__btn" onclick="myFunction()">
+              <img
+                class="widgets__btn-img"
+                src="./images/arrow__left-icon.png"
+                alt=""
+              />
+            </button>
+            <div class="widget">
+              <div class="widget__title widget-green">Sampler</div>
+              <div class="widget__content">
+                <img class="widget__group" src="./images/widget-1.svg" alt="" />
+              </div>
+            </div>
+            <div class="widget">
+              <div class="widget__title widget-orange">Quat. Pump</div>
+              <div class="widget__content">
+                <div class="widget__content-inner">
+                  <div class="widget__content-item">
+                    <div class="widget__content-item-title">A</div>
+                    <img class="bottle-icon" src="./images/bottle-a-icon.svg" alt="" />
+                    <div class="widget__content-item-subtitle">0.0</div>
+                  </div>
+                  <div class="widget__content-item">
+                    <div class="widget__content-item-title">B</div>
+                    <img class="bottle-icon" src="./images/bottle-b-icon.svg" alt="" />
+                    <div class="widget__content-item-subtitle">100.0</div>
+                  </div>
+                  <div class="widget__content-item valve-item">
+                    <div class="widget__content-item-title"></div>
+                    <img class="valve-icon" src="./images/valve.svg" alt="" />
+                    <div class="widget__content-item-subtitle"></div>
+                  </div>
+                </div>
+                <div class="widget__content-value">1.000 mL/min</div>
+               
+                
+              </div>
+            </div>
+          </section>
+          <!-- Tabs -->
+          <section class="tabs" id="my-tabs">
+            <div class="first__tab">
+              <div class="tab__nav">
+                <button class="tablinks" onclick="openCity(event, 'worklist')">
+                  Worklist
+                  <span class="blue-span__run">RUN</span>
+                  <span class="grey-span__todo">TO DO:</span>
+                  23
+                  <span class="span__injections">injections</span>
+                  02:15:00
+                </button>
+                <button
+                  class="tablinks"
+                  onclick="openCity(event, 'method')"
+                  id="defaultOpen"
+                >
+                  Method: Method1.amx (00:00/04:30)
+                </button>
+                <button
+                  class="tablinks tablinks__single-run"
+                  onclick="openCity(event, 'single__run')"
+                >
+                  single run
+                </button>
+              </div>
+              <!--First Tab Content  -->
+              <div id="worklist" class="tabcontent">
+                <h3>worklist</h3>
+              </div>
+              <!-- Tab Method Content-->
+              <div id="method" class="tabcontent">
+                <div class="tab-method__inner">
+                  <div class="tab-method__nav">
+                    <button
+                      class="tab-method__link"
+                      onclick="openCityX(event, 'als')"
+                    >
+                      ALS
+                    </button>
+                    <button
+                      class="tab-method__link"
+                      onclick="openCityX(event, 'inlets')"
+                    >
+                      Inlets
+                    </button>
+                    <button
+                      class="tab-method__link"
+                      onclick="openCityX(event, 'columns')"
+                      id="defaultOpenX"
+                    >
+                      Columns
+                    </button>
+                    <div class="tab-method__nav-flex"></div>
+                  </div>
+
+                  <div id="als" class="tab-method__content">
+                    <h3>ALS</h3>
+                  </div>
+
+                  <div id="inlets" class="tab-method__content">
+                    <h3>inlets</h3>
+                  </div>
+
+                  <div id="columns" class="tab-method__content">
+                    <div class="columns__inner">
+                      <!-- Columns Left -->
+                      <div class="columns__left">
+                        <div class="formule">
+                          <div class="formule__item">
+                            <h5 class="formule__item-title">Front Inlet</h5>
+                            <div class="formule__item-image">
+                              <img
+                                class="formule__item-img"
+                                src="./images/formule-icon-1.svg"
+                                alt=""
+                              />
+                            </div>
+                            <p class="formule__item-subtitle">
+                              SS (H<sub>2</sub>)
+                            </p>
+                          </div>
+                          <div class="formule__item">
+                            <h5 class="formule__item-title">
+                              Agilent 19091Q-002
+                            </h5>
+                            <div class="formule__item-image agilent-icon-img">
+                              <img
+                                class="formule__item-img"
+                                src="./images/agilent-icon.svg"
+                                alt=""
+                              />
+                            </div>
+                            <p class="formule__item-subtitle agilent-subtitle">
+                              60 <sup>0</sup>C - 450 <sup>0</sup>C (450
+                              <sup>0</sup>C) 25 m * 320 μm * 1μm
+                            </p>
+                          </div>
+                          <div class="formule__item">
+                            <h5 class="formule__item-title">Back Detector</h5>
+                            <div class="formule__item-image">
+                              <img
+                                class="formule__item-img detector-icon-img"
+                                src="./images/detector-icon.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="formule__item-subtitle">NPD</div>
+                          </div>
+                          <div class="formule__content">
+                            <p>(Initial): 0 min</p>
+                            <p>ArMe @ 35 <sup>0</sup>C Oven</p>
+                            <p>Out: Ambient Pressure</p>
+                            <p>25 m * 320 μm * 1μm</p>
+                          </div>
+                        </div>
+                        <!--Control Mode  -->
+                        <div class="control__mode">
+                          <div class="control__mode-title columns__title">
+                            Control mode
+                          </div>
+                          <!-- Checkbox -->
+                          <label class="control__mode-check">
+                            <input
+                              class="control__mode-check-input"
+                              type="checkbox"
+                              checked
+                            />
+                            <span class="checkbox__new"></span>
+                            On
+                          </label>
+                          <!--Control Mode Body  -->
+                          <div class="control__mode-body">
+                            <div class="control__mode-field">
+                              <span class="control__mode-title-span">Flow</span>
+                              <span class="control__mode-value-span"
+                                >16.849</span
+                              >
+                              mL/min
+                            </div>
+                            <div class="control__mode-field">
+                              <span class="control__mode-title-span"
+                                >Average Velocity</span
+                              >
+                              <span class="control__mode-value-span"
+                                >198.05</span
+                              >
+                              cm/sec
+                            </div>
+                            <div class="control__mode-field">
+                              <span class="control__mode-title-span"
+                                >Pressure</span
+                              >
+                              <span class="control__mode-value-span"
+                                >21.756</span
+                              >
+                              psi
+                            </div>
+                            <div class="control__mode-field">
+                              <span class="control__mode-title-span"
+                                >Holdup Time</span
+                              >
+                              <span class="control__mode-value-span"
+                                >0.21038</span
+                              >
+                              min
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Post Run -->
+                        <div class="post__run">
+                          <div class="post__run-title columns__title">
+                            Post Run
+                          </div>
+                          <div class="post__run-field">
+                            <span class="control__mode-title-span"
+                              >Post Run</span
+                            >
+                            <span class="control__mode-value-span">16.849</span>
+                            mL/min
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Columns Right -->
+                      <div class="columns__right">
+                        <!--Pressure/Flow Settings  -->
+                        <div class="pressureFlowSettings-title columns__title">
+                          Pressure/Flow Settings
+                        </div>
+                        <!-- Radiocheck -->
+                        <form class="radiocheck">
+                          <label class="radiocheck__label">
+                            <input
+                              class="radiocheck__label-input"
+                              type="radio"
+                              name="settings"
+                              value="Constant Pressure"
+                            />
+                            <span class="radiocheck__new"></span>
+                            Constant Pressure
+                          </label>
+                          <label class="radiocheck__label">
+                            <input
+                              class="radiocheck__label-input"
+                              type="radio"
+                              name="settings"
+                              value="Ramped Pressure"
+                              checked
+                            />
+                            <span class="radiocheck__new"></span>
+                            Ramped Pressure
+                          </label>
+                          <label class="radiocheck__label">
+                            <input
+                              class="radiocheck__label-input"
+                              type="radio"
+                              name="settings"
+                              value="Constant Flow"
+                            />
+                            <span class="radiocheck__new"></span>
+                            Constant Flow
+                          </label>
+                          <label class="radiocheck__label">
+                            <input
+                              class="radiocheck__label-input"
+                              type="radio"
+                              name="settings"
+                              value="Ramped Flow"
+                            />
+                            <span class="radiocheck__new"></span>
+                            Ramped Flow
+                          </label>
+                        </form>
+                        <!-- Ramp Table -->
+                        <table>
+                          <tr>
+                            <th></th>
+                            <th>Ramp ##</th>
+                            <th>Rate, mL/min per min</th>
+                            <th>Value, mL/min</th>
+                            <th>Hold Time, min</th>
+                            <th>Run Time, min</th>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>(Initial)</td>
+                            <td></td>
+                            <td>16.849</td>
+                            <td>0</td>
+                            <td>0</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input
+                                type="radio"
+                                id="ramp1"
+                                name="settings"
+                                value="ramp1"
+                              />
+                            </td>
+                            <td>Ramp 1</td>
+                            <td>10</td>
+                            <td>16.849</td>
+                            <td>0</td>
+                            <td>0</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <input
+                                type="radio"
+                                id="ramp2"
+                                name="settings"
+                                value="ramp2"
+                              />
+                            </td>
+                            <td>Ramp 2</td>
+                            <td>20</td>
+                            <td>16.849</td>
+                            <td>5</td>
+                            <td>26</td>
+                          </tr>
+                        </table>
+                        <button class="pressureFlowSettings__switch-btn">
+                          <img src="./images/switch-icon.svg" alt="" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="single__run" class="tabcontent">
+                <h3>single run</h3>
+                <p>single run.</p>
+              </div>
+              <!-- Tab worklist footer btn -->
+              <div class="tab__worklist-control">
+                <div class="tab__worklist-control-left">
+                  <div class="tab__worklist-control-left-item">
+                    <button class="worklist-control__left-btn">
+                      <img src="./images/plus-icon.png" alt="" />
+                    </button>
+                    <div class="worklist-control__left-btn-span">New</div>
+                  </div>
+                  <div class="tab__worklist-control-left-item">
+                    <button class="worklist-control__left-btn">
+                      <img src="./images/points-icon.png" alt="" />
+                    </button>
+                    <div class="worklist-control__left-btn-span">Open</div>
+                  </div>
+                </div>
+
+                <button class="worklist-control__right-btn">Save</button>
+                <button class="worklist-control__right-btn">Save as</button>
+                <button class="worklist-control__right-btn">Cancel</button>
+              </div>
+            </div>
+            <div class="tab__inner">
+              <!-- Live chart -->
+              <div class="tab__chart">
+                <div class="tab__chart-title">live chart</div>
+                <div class="tab__chart-body">
+                  <div class="tab__chart-content">
+                    <div class="tab__chart-plots">
+                      <span class="tab__chart-plot plot-green">Plot</span>
+                      <span class="tab__chart-plot plot-violet">Plot</span>
+                      <span class="tab__chart-plot plot-orange">Plot</span>
+                    </div>
+                    <div class="tab__chart-diagram">
+                      <img src="./images/dia.png" alt="" />
+                    </div>
+                  </div>
+                  <div class="tab__chart-right-bar">
+                    <button class="right-bar__btn">
+                      <img src="./images/legend.png" alt="" />
+                    </button>
+                    <button class="right-bar__btn">
+                      <img src="./images/xy.png" alt="" />
+                    </button>
+                    <button class="right-bar__btn">
+                      <img src="./images/balance-icon.png" alt="" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Spectra -->
+              <div class="tab__spectra">
+                <div class="tab__spectra-title">spectra</div>
+                <div class="tab__spectra-body"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="./js/main.min.js"></script>
+  </body>
+</html>
